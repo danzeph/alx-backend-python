@@ -10,7 +10,7 @@ def log_queries(func):
  def wrapper(*args, **kwargs):
   query = kwargs.get("query") if "query" in kwargs else args[0]
   start_time = datetime.now()
-  result = func(query, *args, **kwargs)
+  result = func(*args, **kwargs)
   end_time = datetime.now()
   duration = (end_time - start_time).total_seconds()
   print(f"SQL {query} took {duration:.3f} seconds")
