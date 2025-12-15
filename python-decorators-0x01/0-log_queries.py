@@ -1,6 +1,6 @@
 import sqlite3
 import functools
-import datetime
+from datetime import datetime
 
 
 
@@ -8,9 +8,9 @@ import datetime
 def log_queries(func):
  @functools.wraps(func)
  def wrapper(query, *args, **kwargs):
-  start_time = datetime.datetime.now()
+  start_time = datetime.now()
   result = func(query, *args, **kwargs)
-  end_time = datetime.datetime.now()
+  end_time = datetime.now()
   duration = (end_time - start_time).total_seconds()
   print(f"SQL {query} took {duration:.3f} seconds")
   return result
