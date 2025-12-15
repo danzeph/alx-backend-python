@@ -7,7 +7,8 @@ from datetime import datetime
 #### decorator to lof SQL queries
 def log_queries(func):
  @functools.wraps(func)
- def wrapper(query, *args, **kwargs):
+ def wrapper(*args, **kwargs):
+  query = kwargs.get("query") if "query" in kwargs else args[0]
   start_time = datetime.now()
   result = func(query, *args, **kwargs)
   end_time = datetime.now()
@@ -16,7 +17,6 @@ def log_queries(func):
   return result
  return wrapper
 
- """ YOUR CODE GOES HERE"""
 
 @log_queries
 def fetch_all_users(query):
