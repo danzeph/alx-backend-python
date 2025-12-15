@@ -2,6 +2,12 @@ import sqlite3
 import functools
 
 #### decorator to lof SQL queries
+def log_queries(func):
+ @functools.wraps(func)
+ def wrapper(query, *args, **kwargs):
+  print(f"Executing SQL: {query}")
+  return func(query, *args, **kwargs)
+return wrapper
 
  """ YOUR CODE GOES HERE"""
 
