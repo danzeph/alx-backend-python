@@ -3,6 +3,7 @@ import functools
 
 def with_db_connection(func):
     @functools.wraps(func)
+    conn = None
     def wrapper(*args, **kwargs):
         try:
             conn = sqlite3.connect("users.db")
@@ -11,8 +12,9 @@ def with_db_connection(func):
             result = func(conn, *args, **kwargs)
             return result
         finally:
-            conn.close()
-            print("Connection has been closed")
+            if conn:
+                conn.close()
+                print("Connection has been closed")
 
     return wrapper
 
