@@ -1,7 +1,7 @@
 import sqlite3
 
 
-class Execute:
+class ExecuteQuery:
     def __init__(self, db: str):
         self.db = db
         self.conn = None
@@ -26,7 +26,7 @@ class Execute:
 
 
 def main():
-    with Execute("users.db") as db:
+    with ExecuteQuery("users.db") as db:
         db.execute_query(
             "SELECT * FROM users WHERE age > ?",
             (25,)
