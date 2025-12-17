@@ -28,10 +28,9 @@ async def fetch_concurrently():
 
 def main():
     all_users, older_users  =asyncio.run(fetch_concurrently())
-    # 3. Formatting the output to show dictionaries
     print("All Users:")
     for user in all_users:
-        print(dict(user))  # Convert aiosqlite.Row to a standard dict
+        print(dict(user))
 
     print("\nUsers over 40:")
     for user in older_users:
