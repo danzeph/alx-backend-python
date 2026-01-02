@@ -120,7 +120,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Set up class fixtures and mock request.get"""
-        print(f"{cls.org_payload}")
 
         cls.get_patcher = patch("requests.get")
         cls.mock_get = cls.get_patcher.start()
@@ -145,7 +144,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         """Test public_repos returns expected repos"""
         client = GithubOrgClient("google")
         result = client.public_repos()
-        self.assertEqual(result, list)
+        self.assertEqual(result, self.expected_repos)
 
     def test_public_repos_with_license(self):
         """Test filtered repos by Apache 2.0 license"""
